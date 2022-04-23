@@ -15,7 +15,7 @@ connector = sqlite3.connect("CLIENTManagement.db")
 cursor = connector.cursor()
 
 connector.execute(
-    "CREATE TABLE IF NOT EXISTS CLIENT_MANAGEMENT (STUDENT_ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, NAME TEXT, EMAIL TEXT, PHONE_NO TEXT, GENDER TEXT, DOB TEXT, STREAM TEXT)"
+    "CREATE TABLE IF NOT EXISTS CLIENT_MANAGEMENT (CLIENT_ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, NAME TEXT, EMAIL TEXT, PHONE_NO TEXT, GENDER TEXT, DOB TEXT, STREAM TEXT)"
 )
 
 # Creating the functions
@@ -90,7 +90,7 @@ def remove_record():
         tree.delete(current_item)
 
         connector.execute(
-            "DELETE FROM CLIENT_MANAGEMENT WHERE STUDENT_ID=%d" % selection[0]
+            "DELETE FROM CLIENT_MANAGEMENT WHERE CLIENT_ID=%d" % selection[0]
         )
         connector.commit()
 
@@ -220,7 +220,7 @@ tree = ttk.Treeview(
     height=100,
     selectmode=BROWSE,
     columns=(
-        "Student ID",
+        "CLIENT ID",
         "Name",
         "Email Address",
         "Contact Number",
@@ -238,7 +238,7 @@ Y_scroller.pack(side=RIGHT, fill=Y)
 
 tree.config(yscrollcommand=Y_scroller.set, xscrollcommand=X_scroller.set)
 
-tree.heading("Student ID", text="ID", anchor=CENTER)
+tree.heading("CLIENT ID", text="ID", anchor=CENTER)
 tree.heading("Name", text="Name", anchor=CENTER)
 tree.heading("Email Address", text="Email ID", anchor=CENTER)
 tree.heading("Contact Number", text="Phone No", anchor=CENTER)
